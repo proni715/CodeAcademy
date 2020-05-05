@@ -1,7 +1,10 @@
-package com.example.codeacademy;
+package com.example.codeacademy.objects;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class User {
     @JsonProperty("email")
@@ -10,9 +13,7 @@ public class User {
     private String name;
     @JsonProperty("password")
     private String password;
-    @JsonIgnore
     private String picture;
-    @JsonIgnore
     private String role;
 
     public User(){

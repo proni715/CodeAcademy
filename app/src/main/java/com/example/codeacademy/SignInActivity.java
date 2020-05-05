@@ -2,6 +2,7 @@ package com.example.codeacademy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,13 +10,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.codeacademy.objects.Error;
+import com.example.codeacademy.objects.Links;
+import com.example.codeacademy.objects.ServerResponse;
+import com.example.codeacademy.objects.Token;
+import com.example.codeacademy.objects.User;
+
 import java.io.IOException;
-import java.net.URL;
 
 public class SignInActivity extends AppCompatActivity {
 
     static EditText login;
     static EditText password;
+
+    SharedPreferences mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         login = (EditText) findViewById(R.id.emailSignInEditText);
         password = (EditText) findViewById(R.id.passwordSignInEditText);
+        mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
     }
 
     public void onClickButton (View view) throws IOException {
@@ -30,7 +39,6 @@ public class SignInActivity extends AppCompatActivity {
         String logString = login.getText().toString();
         String passString = password.getText().toString();
         if(!logString.isEmpty()&&!passString.isEmpty()){
-
             User user = new User(logString,passString);
             new APIQueryTask().execute(user);
         }else{
@@ -46,32 +54,33 @@ public class SignInActivity extends AppCompatActivity {
             ServerResponse response = null;
             try {
                 response = Requests.postRequest(link.getSignInURL(),JSON.buildUser(users[0]));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return response;
+
+
         }
 
         @Override
         protected void onPostExecute(ServerResponse response) {
 
-            System.out.println(response.getResponseCode()+" /fuck/ "+ response.getResponseBody());
             if(response.getResponseCode()==201){
+                Token token = JSON.getToken(response.getResponseBody());
+                SharedPreferences.Editor editor = mData.edit();
+                editor.putString(getString(R.string.APP_PREFERENCES_NAME),token.getToken());
+                editor.apply();
+                Toast.makeText(getApplicationContext(),"You authorized",Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getApplicationContext(),"LoggedIn",Toast.LENGTH_LONG).show();
-            }
-            else if(response.getResponseCode()==400){
-                Code400 code = null;
-                code = JSON.getCode400(response.getResponseBody());
-                Toast.makeText(getApplicationContext(),code.message,Toast.LENGTH_LONG).show();
+            }else if(response.getResponseCode()==401){
+                Toast.makeText(getApplicationContext(),"Check email or password",Toast.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(getApplicationContext(),"Please, check all data",Toast.LENGTH_LONG).show();
+                Error error = JSON.getError(response.getResponseBody());
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
             }
-
         }
-
-
 
     }
 }

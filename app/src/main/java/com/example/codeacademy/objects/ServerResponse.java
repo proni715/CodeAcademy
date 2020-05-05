@@ -1,4 +1,4 @@
-package com.example.codeacademy;
+package com.example.codeacademy.objects;
 
 public class ServerResponse {
 

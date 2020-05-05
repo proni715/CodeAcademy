@@ -2,6 +2,10 @@ package com.example.codeacademy;
 
 import android.util.Log;
 
+import com.example.codeacademy.objects.Error;
+import com.example.codeacademy.objects.Token;
+import com.example.codeacademy.objects.User;
+
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -9,6 +13,20 @@ import java.io.IOException;
 public class JSON {
 
     final static String LOG_TAG= "debug";
+
+    public  static Token getToken(String json){
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(json);
+        Token token = new Token();
+        try {
+            token = mapper.readValue(json,Token.class);
+        }
+        catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return token;
+    }
 
     public static User getUser(String json)
     {
@@ -25,14 +43,14 @@ public class JSON {
         return user;
     }
 
-    public static Code400 getCode400(String json)
+    public static Error getError(String json)
     {
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(json);
-        Code400 code = new Code400();
+        Error code = new Error();
         try {
 
-            code = mapper.readValue(json,Code400.class);
+            code = mapper.readValue(json, Error.class);
         }
         catch (IOException e)
         {

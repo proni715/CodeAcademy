@@ -1,5 +1,7 @@
 package com.example.codeacademy;
 
+import com.example.codeacademy.objects.ServerResponse;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -22,6 +24,21 @@ public class Requests {
         ServerResponse result = new ServerResponse(response.code(),response.body().string());
         return result;
     }
+
+    public static ServerResponse getRequestWithHeaders(URL url, String header) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("Authorization",header)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        ServerResponse result = new ServerResponse(response.code(),response.body().string());
+        return result;
+    }
+
+
 
     public static ServerResponse postRequest(URL url, String json) throws IOException {
         OkHttpClient client = new OkHttpClient();

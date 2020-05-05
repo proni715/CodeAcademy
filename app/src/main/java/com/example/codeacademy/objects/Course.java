@@ -1,4 +1,8 @@
-package com.example.codeacademy;
+package com.example.codeacademy.objects;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Course {
     private String avatar;

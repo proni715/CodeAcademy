@@ -1,4 +1,4 @@
-package com.example.codeacademy;
+package com.example.codeacademy.objects;
 
 import java.net.MalformedURLException;
 import java.net.URL;

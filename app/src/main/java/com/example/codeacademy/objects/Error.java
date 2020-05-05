@@ -1,16 +1,16 @@
-package com.example.codeacademy;
+package com.example.codeacademy.objects;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Code400 {
+public class Error {
 
-    String name;
-    String params;
-    String value;
-    String message;
+    private String name;
+    private String params;
+    private String value;
+    public String message;
 
-    public Code400(){
+    public Error(){
 
     }
 
