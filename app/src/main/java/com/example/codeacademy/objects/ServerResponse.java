@@ -1,6 +1,9 @@
 package com.example.codeacademy.objects;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class ServerResponse {
+
 
     private int responseCode;
     private String responseBody;

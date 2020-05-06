@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
-
         if(mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
-            Toast.makeText(getApplicationContext(),"Cool",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this,CoursesActivity.class);
+            startActivity(intent);
         }else{
             Intent intent = new Intent(MainActivity.this,SignInActivity.class);
             startActivity(intent);

@@ -5,6 +5,10 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Course {
+
+
+
+    private String id;
     private String avatar;
     private String tittle;
     private String description;
@@ -35,6 +39,14 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
