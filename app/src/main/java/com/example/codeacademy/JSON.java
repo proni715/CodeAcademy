@@ -2,6 +2,7 @@ package com.example.codeacademy;
 
 import android.util.Log;
 
+import com.example.codeacademy.objects.CourseById;
 import com.example.codeacademy.objects.Courses;
 import com.example.codeacademy.objects.Error;
 import com.example.codeacademy.objects.Token;
@@ -57,6 +58,21 @@ public class JSON {
             Log.e(LOG_TAG,"Parsing error");
         }
         return courses;
+    }
+
+    public static CourseById getCourseById(String json)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(json);
+        CourseById course = new CourseById();
+        try {
+            course = mapper.readValue(json,CourseById.class);
+        }
+        catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return course;
     }
 
     public static Error getError(String json)

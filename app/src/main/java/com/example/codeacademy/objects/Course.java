@@ -9,12 +9,21 @@ public class Course {
 
 
     private String id;
+    private String user;
     private String avatar;
-    private String tittle;
+    private String title;
     private String description;
 
     public Course(){
 
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getAvatar() {
@@ -25,12 +34,12 @@ public class Course {
         this.avatar = avatar;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

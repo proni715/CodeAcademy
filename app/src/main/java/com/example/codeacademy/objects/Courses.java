@@ -1,12 +1,13 @@
 package com.example.codeacademy.objects;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-@JsonIgnoreProperties(ignoreUnknown = true)
+
+import java.util.List;
 
 public class Courses {
 
     private int count;
-    private Course [] rows;
+    public  Course [] rows;
 
     public int getCount() {
         return count;
@@ -16,11 +17,11 @@ public class Courses {
         this.count = count;
     }
 
-    public Course[] getRows() {
+    public Course [] getRows() {
         return rows;
     }
 
-    public void setRows(Course[] rows) {
+    public void setRows(Course [] rows) {
         this.rows = rows;
     }
 

@@ -1,8 +1,8 @@
 package com.example.codeacademy.objects;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Error {
 
     private String name;
