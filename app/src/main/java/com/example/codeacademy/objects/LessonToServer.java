@@ -1,35 +1,37 @@
 package com.example.codeacademy.objects;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
-@JsonIgnoreProperties(ignoreUnknown = true)
 
-public class Lesson {
+public class LessonToServer {
 
-
-
-    String id;
-    Course course;
+    @JsonProperty("course")
+    String course;
+    @JsonProperty("title")
     String title;
-    String avatar;
+    @JsonProperty("avatar")
+    String avatar = "avatar";
+    @JsonProperty("description")
     String description;
+    @JsonProperty("text")
     String text;
-    String photos;
-    String attachments;
+    @JsonProperty("photos")
+    String photos = "bimba";
+    @JsonProperty("attachments")
+    String attachments = "bimba";
 
-    public String getId() {
-        return id;
+    public LessonToServer(String course, String title, String description, String text){
+
+        this.course = course;
+        this.title = title;
+        this.description = description;
+        this.text = text;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Course getCourse() {
+    public String getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(String course) {
         this.course = course;
     }
 
@@ -80,6 +82,5 @@ public class Lesson {
     public void setAttachments(String attachments) {
         this.attachments = attachments;
     }
-
 
 }

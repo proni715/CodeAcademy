@@ -22,6 +22,7 @@ public class Links {
         return url;
     }
 
+
     public URL getCourseURL(String courseId){
         URL url = null;
         courseId+="/";
@@ -33,23 +34,22 @@ public class Links {
         return url;
     }
 
-    public URL getLessonsURL(String courseId){
+    public URL getLessonsURL(){
         URL url = null;
-        courseId+="/";
+
         try{
-            url = new URL(this.BASE_URL+this.COURSES+courseId+this.LESSONS);
+            url = new URL(this.BASE_URL+this.LESSONS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
     }
 
-    public URL getLessonURL(String courseId,String lessonId){
+    public URL getLessonURL(String lessonId){
         URL url = null;
-        courseId+="/";
         lessonId+="/";
         try{
-            url = new URL(this.BASE_URL+this.COURSES+courseId+this.LESSONS+lessonId);
+            url = new URL(this.BASE_URL+this.LESSONS+lessonId);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

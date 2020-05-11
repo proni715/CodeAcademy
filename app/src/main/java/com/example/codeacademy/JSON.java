@@ -2,9 +2,12 @@ package com.example.codeacademy;
 
 import android.util.Log;
 
+import com.example.codeacademy.objects.Course;
 import com.example.codeacademy.objects.CourseById;
 import com.example.codeacademy.objects.Courses;
 import com.example.codeacademy.objects.Error;
+import com.example.codeacademy.objects.Lesson;
+import com.example.codeacademy.objects.LessonToServer;
 import com.example.codeacademy.objects.Token;
 import com.example.codeacademy.objects.User;
 
@@ -29,6 +32,8 @@ public class JSON {
         }
         return token;
     }
+
+
 
     public static User getUser(String json)
     {
@@ -60,6 +65,21 @@ public class JSON {
         return courses;
     }
 
+    public static Course getCourse(String json)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(json);
+        Course course = new Course();
+        try {
+            course = mapper.readValue(json,Course.class);
+        }
+        catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return course;
+    }
+
     public static CourseById getCourseById(String json)
     {
         ObjectMapper mapper = new ObjectMapper();
@@ -74,6 +94,23 @@ public class JSON {
         }
         return course;
     }
+
+    public static Lesson getLesson(String json)
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(json);
+        Lesson lesson = new Lesson();
+        try {
+            lesson = mapper.readValue(json,Lesson.class);
+        }
+        catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return lesson;
+    }
+
+
 
     public static Error getError(String json)
     {
@@ -96,6 +133,30 @@ public class JSON {
         String result = null;
         try {
             result = mapper.writeValueAsString(user);
+        }catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return result;
+    }
+
+    public static String buildCourse(Course course) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String result = null;
+        try {
+            result = mapper.writeValueAsString(course);
+        }catch (IOException e)
+        {
+            Log.e(LOG_TAG,"Parsing error");
+        }
+        return result;
+    }
+
+    public static String buildLesson(LessonToServer lesson) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String result = null;
+        try {
+            result = mapper.writeValueAsString(lesson);
         }catch (IOException e)
         {
             Log.e(LOG_TAG,"Parsing error");

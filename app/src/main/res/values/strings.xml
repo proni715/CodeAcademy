@@ -7,5 +7,6 @@
     <string name="sign_in">Sign In!</string>
     <string name="APP_PREFERENCES">DATA</string>
     <string name="APP_PREFERENCES_NAME">Authorization</string>
+    <string name="TOKEN_BEARER">Bearer </string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.codeacademy.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
             Links link = new Links();
             ServerResponse response = null;
             try {
-                response = Requests.postRequest(link.getSignUpURL(), JSON.buildUser(users[0]));
+                response = Requests.postRequest(link.getSignUpURL(), JSON.buildUser(users[0]),null);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,6 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.APP_PREFERENCES_NAME),token.getToken());
                 editor.apply();
                 Toast.makeText(getApplicationContext(),"You register and authorized",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SignUpActivity.this, CoursesActivity.class);
+                startActivity(intent);
+                SignUpActivity.this.finish();
 
             }else if(response.getResponseCode()==401){
                 Toast.makeText(getApplicationContext(),"Check email or password",Toast.LENGTH_LONG).show();

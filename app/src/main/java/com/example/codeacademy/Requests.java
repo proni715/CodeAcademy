@@ -30,7 +30,7 @@ public class Requests {
         Request request = new Request.Builder()
                 .url(url)
                 .get()
-                .addHeader("Authorization",header)
+                .addHeader("Authorization","Bearer "+header)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
@@ -40,13 +40,14 @@ public class Requests {
 
 
 
-    public static ServerResponse postRequest(URL url, String json) throws IOException {
+    public static ServerResponse postRequest(URL url, String json,String header) throws IOException {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(
                 MediaType.parse("application/json; charset=utf-8"), json);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .addHeader("Authorization","Bearer "+header)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();

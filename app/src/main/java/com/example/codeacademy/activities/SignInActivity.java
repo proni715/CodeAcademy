@@ -3,11 +3,13 @@ package com.example.codeacademy.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codeacademy.JSON;
@@ -25,6 +27,7 @@ public class SignInActivity extends AppCompatActivity {
 
     static EditText login;
     static EditText password;
+    TextView signUp;
 
     SharedPreferences mData;
 
@@ -34,7 +37,15 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         login = (EditText) findViewById(R.id.emailSignInEditText);
         password = (EditText) findViewById(R.id.passwordSignInEditText);
+        signUp = findViewById(R.id.signUpTextViewSignIn);
         mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this,SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClickButton (View view) throws IOException {
@@ -56,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
             Links link = new Links();
             ServerResponse response = null;
             try {
-                response = Requests.postRequest(link.getSignInURL(), JSON.buildUser(users[0]));
+                response = Requests.postRequest(link.getSignInURL(), JSON.buildUser(users[0]),mData.getString(getString(R.string.APP_PREFERENCES_NAME),""));
 
             } catch (IOException e) {
                 e.printStackTrace();
