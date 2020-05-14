@@ -2,10 +2,14 @@ package com.example.codeacademy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -26,12 +30,45 @@ import java.util.List;
 public class CoursesActivity extends AppCompatActivity {
 
     LinearLayout liner;
+    SharedPreferences mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
         liner = findViewById(R.id.linerLayout);
+        mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
         new APIQueryTask().execute();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.courses_menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if(id ==R.id.action_createCourse)
+        {
+            Intent intent = new Intent(this, CreateCourseActivity.class);
+            startActivity(intent);
+            this.finish();
+
+        }
+        if(id ==R.id.action_logOut)
+        {
+            if(mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
+                mData.edit().clear().commit();
+            }
+
+        }
+        if(id ==R.id.action_registration)
+        {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            this.finish();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class APIQueryTask extends AsyncTask<Void,Void, ServerResponse> {

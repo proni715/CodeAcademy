@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -33,6 +35,36 @@ public class CourseActivity extends AppCompatActivity {
         courseNameTextView = findViewById(R.id.courseNameTextView);
         linearLayout = findViewById(R.id.linerLayoutCourse);
         new APIQueryTask().execute(courseId);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.course_menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if(id ==R.id.action_createLesson)
+        {
+            Intent intent = new Intent(this, CreateLessonActivity.class);
+            intent.putExtra("Id",courseId);
+            startActivity(intent);
+            this.finish();
+
+        }
+        if(id ==R.id.action_logOut)
+        {
+            ///дописати\\\
+
+        }
+        if(id ==R.id.action_registration)
+        {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            this.finish();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class APIQueryTask extends AsyncTask<String,Void, ServerResponse> {

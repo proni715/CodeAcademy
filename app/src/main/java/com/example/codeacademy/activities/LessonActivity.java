@@ -40,7 +40,6 @@ public class LessonActivity extends AppCompatActivity {
         textTextView = findViewById(R.id.lessonTextTextView);
         mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
         String lessonId = getIntent().getStringExtra("Id");
-        Toast.makeText(getApplicationContext(),lessonId,Toast.LENGTH_LONG).show();
         new APIQueryTask().execute(lessonId);
     }
 

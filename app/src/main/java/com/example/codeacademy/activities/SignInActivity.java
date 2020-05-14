@@ -86,6 +86,8 @@ public class SignInActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.APP_PREFERENCES_NAME),token.getToken());
                 editor.apply();
                 Toast.makeText(getApplicationContext(),"You authorized",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(SignInActivity.this, CoursesActivity.class);
+                startActivity(intent);
 
             }else if(response.getResponseCode()==401){
                 Toast.makeText(getApplicationContext(),"Check email or password",Toast.LENGTH_LONG).show();

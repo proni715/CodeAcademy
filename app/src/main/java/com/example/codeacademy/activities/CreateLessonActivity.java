@@ -81,8 +81,10 @@ public class CreateLessonActivity extends AppCompatActivity {
 
             if(response.getResponseCode()==201){
                 Lesson lesson = JSON.getLesson(response.getResponseBody());
-                Intent intent = new Intent(CreateLessonActivity.this,LessonActivity.class);
-                intent.putExtra("Id",lesson.getId());
+                Intent intent = new Intent(CreateLessonActivity.this,CourseActivity.class);
+                intent.putExtra("Id",COURSE_ID);
+                startActivity(intent);
+                CreateLessonActivity.this.finish();
             }
             else{
                 Error error = JSON.getError(response.getResponseBody());
