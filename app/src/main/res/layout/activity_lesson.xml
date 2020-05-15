@@ -15,12 +15,17 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.669" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="410dp"
-        android:layout_height="342dp"
+        android:layout_width="407dp"
+        android:layout_height="456dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
