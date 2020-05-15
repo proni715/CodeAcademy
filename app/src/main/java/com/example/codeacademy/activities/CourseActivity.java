@@ -77,7 +77,6 @@ public class CourseActivity extends AppCompatActivity {
                 TextView textView = new TextView(CourseActivity.this);
                 textView.setText(courseById.getLessons().getLessons()[i].getTitle());
                 textView.setId(i);
-                textView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
                 textView.setTextSize(25);
                 ////Вишеееее
                 //

@@ -73,7 +73,6 @@ public class CoursesActivity extends AppCompatActivity {
                 TextView textView = new TextView(CoursesActivity.this);
                 textView.setText(courses.get(i).getTitle());
                 textView.setId(i);
-                textView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
                 textView.setTextSize(25);
                 ////Вишеееее
                 //
