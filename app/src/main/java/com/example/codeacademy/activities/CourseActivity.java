@@ -1,8 +1,11 @@
 package com.example.codeacademy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,6 +30,8 @@ public class CourseActivity extends AppCompatActivity {
     String courseId;
     TextView courseNameTextView;
     LinearLayout linearLayout;
+    SharedPreferences mData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,7 @@ public class CourseActivity extends AppCompatActivity {
         courseId = getIntent().getStringExtra("Id");
         courseNameTextView = findViewById(R.id.courseNameTextView);
         linearLayout = findViewById(R.id.linerLayoutCourse);
+        mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
         new APIQueryTask().execute(courseId);
     }
 
@@ -54,7 +60,9 @@ public class CourseActivity extends AppCompatActivity {
         }
         if(id ==R.id.action_logOut)
         {
-            ///дописати\\\
+            if(mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
+                mData.edit().clear().commit();
+            }
 
         }
         if(id ==R.id.action_registration)
@@ -106,11 +114,29 @@ public class CourseActivity extends AppCompatActivity {
                 ////////
 
                 ////А канкрєтніє тут
-                TextView textView = new TextView(CourseActivity.this);
-                textView.setText(courseById.getLessons().getLessons()[i].getTitle());
-                textView.setId(i);
-                textView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
-                textView.setTextSize(25);
+                CardView card = new CardView(CourseActivity.this);
+
+                TextView titleTextView = new TextView(CourseActivity.this);
+                titleTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
+                titleTextView.setId(i);
+                titleTextView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
+                titleTextView.setTextSize(25);
+                TextView descriptionTextView = new TextView((CourseActivity.this));
+                descriptionTextView.setText(courseById.getLessons().getLessons()[i].getDescription());
+                descriptionTextView.setId(i);
+                titleTextView.setTextSize(14);
+                card.addView(titleTextView);
+                card.addView(descriptionTextView);
+                final int finali = i;
+                titleTextView.setGravity(Gravity.CENTER);
+                card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CourseActivity.this,LessonActivity.class);
+                        intent.putExtra("Id",courseById.getLessons().getLessons()[finali].getId());
+                        startActivity(intent);
+                    }
+                });
                 ////Вишеееее
                 //
                 ////
@@ -118,18 +144,9 @@ public class CourseActivity extends AppCompatActivity {
                 ////
                 ////
                 ////
-                final int finali = i;
-                textView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(CourseActivity.this,LessonActivity.class);
-                        intent.putExtra("Id",courseById.getLessons().getLessons()[finali].getId());
-                        startActivity(intent);
 
-                    }
-                });
-                textView.setGravity(Gravity.CENTER);
-                linearLayout.addView(textView);
+
+                linearLayout.addView(card);
 
             }
 

@@ -1,6 +1,7 @@
 package com.example.codeacademy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -92,6 +93,8 @@ public class CoursesActivity extends AppCompatActivity {
             Courses json = JSON.getCourses(response.getResponseBody());
             final List<Course> courses = Arrays.asList(json.getRows());
             LinearLayout.LayoutParams lParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            CardView.LayoutParams cardParams = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            cardParams.gravity = Gravity.LEFT;
             lParams.gravity = Gravity.CENTER_HORIZONTAL;
             ///ТАРАССССС Тута Створення списку
             ////
@@ -105,13 +108,32 @@ public class CoursesActivity extends AppCompatActivity {
                 ////////
                 ////////////
                 ////////
-
+                CardView card = new CardView(CoursesActivity.this);
+                card.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
+                card.setLayoutParams(cardParams);
                 ////А канкрєтніє тут
-                TextView textView = new TextView(CoursesActivity.this);
-                textView.setText(courses.get(i).getTitle());
-                textView.setId(i);
-                textView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
-                textView.setTextSize(25);
+                TextView titleTextView = new TextView(CoursesActivity.this);
+                TextView descriptionTextView = new TextView(CoursesActivity.this);
+                titleTextView.setText(courses.get(i).getTitle());
+                titleTextView.setId(i);
+                titleTextView.setTextSize(25);
+                titleTextView.setGravity(Gravity.TOP);
+                descriptionTextView.setText(courses.get(i).getDescription());
+                descriptionTextView.setId(i);
+                descriptionTextView.setPadding(2,10,0,0);
+                descriptionTextView.setGravity(Gravity.CENTER);
+                descriptionTextView.setTextSize(14);
+                card.addView(titleTextView);
+                card.addView(descriptionTextView);
+                final int finali = i;
+                card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CoursesActivity.this, CourseActivity.class);
+                        intent.putExtra("Id",courses.get(finali).getId());
+                        startActivity(intent);
+                    }
+                });
                 ////Вишеееее
                 //
                 ////
@@ -119,18 +141,9 @@ public class CoursesActivity extends AppCompatActivity {
                 ////
                 ////
                 ////
-                final int finali = i;
-                textView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(CoursesActivity.this,CourseActivity.class);
-                            intent.putExtra("Id",courses.get(finali).getId());
-                        startActivity(intent);
 
-                    }
-                });
-                textView.setGravity(Gravity.CENTER);
-                liner.addView(textView);
+
+                liner.addView(card);
 
             }
 
