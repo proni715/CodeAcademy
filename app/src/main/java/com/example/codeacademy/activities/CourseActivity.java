@@ -103,7 +103,7 @@ public class CourseActivity extends AppCompatActivity {
                 ////
                 ////
                 ////
-                ////
+                ////`
                 linearLayout.addView(card);
 
             }
