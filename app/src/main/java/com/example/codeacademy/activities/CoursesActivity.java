@@ -1,6 +1,7 @@
 package com.example.codeacademy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -63,36 +64,32 @@ public class CoursesActivity extends AppCompatActivity {
             ////
 
             for(int i =0;i<courses.size();i++){
-                System.out.println(courses.get(i).getTitle());
                 ////////////
                 ////////
                 ////////////
                 ////////
 
                 ////А канкрєтніє тут
-                TextView textView = new TextView(CoursesActivity.this);
-                textView.setText(courses.get(i).getTitle());
-                textView.setId(i);
-                textView.setTextSize(25);
-                ////Вишеееее
-                //
-                ////
-                ////
-                ////
-                ////
-                ////
-                final int finali = i;
-                textView.setOnClickListener(new View.OnClickListener(){
+                CardView card = new CardView(CoursesActivity.this);
+                TextView titleTextView = new TextView(CoursesActivity.this);
+                TextView descriptionTextView = new TextView(CoursesActivity.this);
+                titleTextView.setText(courses.get(i).getTitle());
+                titleTextView.setId(i);
+                titleTextView.setTextSize(40);
+                descriptionTextView.setText(courses.get(i).getDescription());
+                descriptionTextView.setTextSize(20);
+                card.addView(titleTextView);
+                card.addView(descriptionTextView);
+                final int finalI = i;
+                card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(CoursesActivity.this,CourseActivity.class);
-                            intent.putExtra("Id",courses.get(finali).getId());
+                        intent.putExtra("Id",courses.get(finalI).getId());
                         startActivity(intent);
-
                     }
                 });
-                textView.setGravity(Gravity.CENTER);
-                liner.addView(textView);
+                liner.addView(card);
 
             }
 

@@ -1,6 +1,7 @@
 package com.example.codeacademy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -74,10 +75,28 @@ public class CourseActivity extends AppCompatActivity {
                 ////////
 
                 ////А канкрєтніє тут
-                TextView textView = new TextView(CourseActivity.this);
-                textView.setText(courseById.getLessons().getLessons()[i].getTitle());
-                textView.setId(i);
-                textView.setTextSize(25);
+                CardView card = new CardView(CourseActivity.this);
+
+                TextView titleTextView = new TextView(CourseActivity.this);
+                titleTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
+                titleTextView.setId(i);
+                titleTextView.setTextSize(40);
+                TextView descriptionTextView = new TextView(CourseActivity.this);
+                descriptionTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
+                descriptionTextView.setId(i);
+                descriptionTextView.setTextSize(20);
+                card.addView(titleTextView);
+                card.addView(descriptionTextView);
+                final int finalI = i;
+                card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CourseActivity.this,LessonActivity.class);
+                        intent.putExtra("Id",courseById.getLessons().getLessons()[finalI].getId());
+
+                    }
+                });
+
                 ////Вишеееее
                 //
                 ////
@@ -85,18 +104,7 @@ public class CourseActivity extends AppCompatActivity {
                 ////
                 ////
                 ////
-                final int finali = i;
-                textView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(CourseActivity.this,LessonActivity.class);
-                        intent.putExtra("Id",courseById.getLessons().getLessons()[finali].getId());
-                        startActivity(intent);
-
-                    }
-                });
-                textView.setGravity(Gravity.CENTER);
-                linearLayout.addView(textView);
+                linearLayout.addView(card);
 
             }
 

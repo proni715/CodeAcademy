@@ -69,8 +69,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="287dp"
-        android:layout_height="376dp"
+        android:layout_width="282dp"
+        android:layout_height="309dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/emailSignInEditText"
         app:layout_constraintEnd_toEndOf="parent"
