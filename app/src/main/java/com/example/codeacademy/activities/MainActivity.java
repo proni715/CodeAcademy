@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import com.example.codeacademy.R;
 
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences mData;
@@ -18,15 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
-        if(mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
             Intent intent = new Intent(MainActivity.this, CoursesActivity.class);
             startActivity(intent);
             this.finish();
-        }else{
-            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-            startActivity(intent);
-            this.finish();
-        }
     }
 
 }

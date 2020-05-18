@@ -42,12 +42,12 @@ public class CreateCourseActivity extends AppCompatActivity {
         createCourse.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(!titleCourse.getText().toString().isEmpty()&&!descriptionCourse.getText().toString().isEmpty()){
+                if(!titleCourse.getText().toString().isEmpty()&&!descriptionCourse.getText().toString().isEmpty()&&mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
                     Course course = new Course(titleCourse.getText().toString(),descriptionCourse.getText().toString());
                     new APIQueryTask().execute(course);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Please, enter your data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Please, enter your data and Log In",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -73,7 +73,7 @@ public class CreateCourseActivity extends AppCompatActivity {
 
             if(response.getResponseCode()==201){
                 Course course = JSON.getCourse(response.getResponseBody());
-                Intent intent = new Intent(CreateCourseActivity.this,CourseActivity.class);
+                Intent intent = new Intent(CreateCourseActivity.this,CoursesActivity.class);
                 startActivity(intent);
                 CreateCourseActivity.this.finish();
             }
