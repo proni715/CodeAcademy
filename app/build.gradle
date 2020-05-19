@@ -37,4 +37,6 @@ dependencies {
     implementation(group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13')
     implementation(group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.4.2')
     implementation 'androidx.cardview:cardview:1.0.0'
+
+
 }

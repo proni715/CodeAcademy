@@ -115,20 +115,23 @@ public class CourseActivity extends AppCompatActivity {
 
                 ////А канкрєтніє тут
                 CardView card = new CardView(CourseActivity.this);
-                if(i%2==0){
-                    card.setCardBackgroundColor(getResources().getColor(R.color.colorAccent));
-                }else{
-                    card.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                }
-
 
                 TextView titleTextView = new TextView(CourseActivity.this);
                 titleTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
+                titleTextView.setMinHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                titleTextView.setMinimumHeight(ViewGroup.LayoutParams.MATCH_PARENT);
                 titleTextView.setId(i);
+                card.setBackgroundColor(getResources().getColor(R.color.textViewBackground));
+                card.setMinimumHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                card.setMinimumWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                titleTextView.setPadding(15, 10, 10, 10);
                 titleTextView.setTextSize(25);
                 TextView descriptionTextView = new TextView((CourseActivity.this));
                 descriptionTextView.setText(courseById.getLessons().getLessons()[i].getDescription());
                 descriptionTextView.setId(i);
+                descriptionTextView.setMinHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                descriptionTextView.setMinimumHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+                titleTextView.setPadding(10, 40, 10, 10);
                 titleTextView.setTextSize(14);
                 card.addView(titleTextView);
                 card.addView(descriptionTextView);

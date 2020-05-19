@@ -109,20 +109,21 @@ public class CoursesActivity extends AppCompatActivity {
                 ////////////
                 ////////
                 CardView card = new CardView(CoursesActivity.this);
-                card.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
+                card.setBackgroundColor(getResources().getColor(R.color.textViewBackground));
                 card.setLayoutParams(cardParams);
                 ////А канкрєтніє тут
                 TextView titleTextView = new TextView(CoursesActivity.this);
                 TextView descriptionTextView = new TextView(CoursesActivity.this);
                 titleTextView.setText(courses.get(i).getTitle());
                 titleTextView.setId(i);
-                titleTextView.setTextSize(40);
-                titleTextView.setGravity(Gravity.TOP);
+                titleTextView.setPadding(15, 10, 10, 120);
+                titleTextView.setTextSize(28);
+                titleTextView.setGravity(Gravity.CENTER);
                 descriptionTextView.setText(courses.get(i).getDescription());
                 descriptionTextView.setId(i);
-                descriptionTextView.setPadding(2,10,0,0);
+                descriptionTextView.setPadding(5,100,10,10);
                 descriptionTextView.setGravity(Gravity.CENTER);
-                descriptionTextView.setTextSize(20);
+                descriptionTextView.setTextSize(16);
                 card.addView(titleTextView);
                 card.addView(descriptionTextView);
                 final int finali = i;
