@@ -115,11 +115,16 @@ public class CourseActivity extends AppCompatActivity {
 
                 ////А канкрєтніє тут
                 CardView card = new CardView(CourseActivity.this);
+                if(i%2==0){
+                    card.setCardBackgroundColor(getResources().getColor(R.color.colorAccent));
+                }else{
+                    card.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                }
+
 
                 TextView titleTextView = new TextView(CourseActivity.this);
                 titleTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
                 titleTextView.setId(i);
-                titleTextView.setBackgroundColor(getResources().getColor(R.color.design_default_color_secondary_variant));
                 titleTextView.setTextSize(25);
                 TextView descriptionTextView = new TextView((CourseActivity.this));
                 descriptionTextView.setText(courseById.getLessons().getLessons()[i].getDescription());
@@ -129,6 +134,8 @@ public class CourseActivity extends AppCompatActivity {
                 card.addView(descriptionTextView);
                 final int finali = i;
                 titleTextView.setGravity(Gravity.CENTER);
+
+
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

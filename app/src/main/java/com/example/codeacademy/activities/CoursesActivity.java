@@ -116,13 +116,13 @@ public class CoursesActivity extends AppCompatActivity {
                 TextView descriptionTextView = new TextView(CoursesActivity.this);
                 titleTextView.setText(courses.get(i).getTitle());
                 titleTextView.setId(i);
-                titleTextView.setTextSize(25);
+                titleTextView.setTextSize(40);
                 titleTextView.setGravity(Gravity.TOP);
                 descriptionTextView.setText(courses.get(i).getDescription());
                 descriptionTextView.setId(i);
                 descriptionTextView.setPadding(2,10,0,0);
                 descriptionTextView.setGravity(Gravity.CENTER);
-                descriptionTextView.setTextSize(14);
+                descriptionTextView.setTextSize(20);
                 card.addView(titleTextView);
                 card.addView(descriptionTextView);
                 final int finali = i;

@@ -30,7 +30,6 @@
         android:id="@+id/courseNameTextView"
         android:layout_width="414dp"
         android:layout_height="94dp"
-        android:text="TextView"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
