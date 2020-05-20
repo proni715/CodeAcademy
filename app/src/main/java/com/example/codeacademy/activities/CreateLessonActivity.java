@@ -42,7 +42,7 @@ public class CreateLessonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_lesson);
         COURSE_ID =  getIntent().getStringExtra("Id");
         mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
-        titleEditText = findViewById(R.id.textEditTextCreateLesson);
+        titleEditText = findViewById(R.id.titleEditTextCreateLesson);
         descriptionEditText = findViewById(R.id.descriptionEditTextCreateLesson);
         textEditText = findViewById(R.id.textEditTextCreateLesson);
         createCourse = findViewById(R.id.createLessonButtonCreateLesson);
