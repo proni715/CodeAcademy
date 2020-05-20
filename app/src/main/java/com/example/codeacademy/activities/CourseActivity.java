@@ -3,14 +3,10 @@ package com.example.codeacademy.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -30,8 +26,6 @@ public class CourseActivity extends AppCompatActivity {
     String courseId;
     TextView courseNameTextView;
     LinearLayout linearLayout;
-    SharedPreferences mData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,40 +33,7 @@ public class CourseActivity extends AppCompatActivity {
         courseId = getIntent().getStringExtra("Id");
         courseNameTextView = findViewById(R.id.courseNameTextView);
         linearLayout = findViewById(R.id.linerLayoutCourse);
-        mData = getSharedPreferences(getString(R.string.APP_PREFERENCES_NAME), Context.MODE_PRIVATE);
         new APIQueryTask().execute(courseId);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.course_menu,menu);
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        int id = item.getItemId();
-        if(id ==R.id.action_createLesson)
-        {
-            Intent intent = new Intent(this, CreateLessonActivity.class);
-            intent.putExtra("Id",courseId);
-            startActivity(intent);
-            this.finish();
-
-        }
-        if(id ==R.id.action_logOut)
-        {
-            if(mData.contains(getString(R.string.APP_PREFERENCES_NAME))){
-                mData.edit().clear().commit();
-            }
-
-        }
-        if(id ==R.id.action_registration)
-        {
-            Intent intent = new Intent(this, SignInActivity.class);
-            startActivity(intent);
-            this.finish();
-
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     class APIQueryTask extends AsyncTask<String,Void, ServerResponse> {
@@ -118,44 +79,31 @@ public class CourseActivity extends AppCompatActivity {
 
                 TextView titleTextView = new TextView(CourseActivity.this);
                 titleTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
-                titleTextView.setMinHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-                titleTextView.setMinimumHeight(ViewGroup.LayoutParams.MATCH_PARENT);
                 titleTextView.setId(i);
-                card.setBackgroundColor(getResources().getColor(R.color.textViewBackground));
-                card.setMinimumHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-                card.setMinimumWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-                titleTextView.setPadding(15, 10, 10, 10);
-                titleTextView.setTextSize(25);
-                TextView descriptionTextView = new TextView((CourseActivity.this));
-                descriptionTextView.setText(courseById.getLessons().getLessons()[i].getDescription());
+                titleTextView.setTextSize(40);
+                TextView descriptionTextView = new TextView(CourseActivity.this);
+                descriptionTextView.setText(courseById.getLessons().getLessons()[i].getTitle());
                 descriptionTextView.setId(i);
-                descriptionTextView.setMinHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-                descriptionTextView.setMinimumHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-                titleTextView.setPadding(10, 40, 10, 10);
-                titleTextView.setTextSize(14);
+                descriptionTextView.setTextSize(20);
                 card.addView(titleTextView);
                 card.addView(descriptionTextView);
-                final int finali = i;
-                titleTextView.setGravity(Gravity.CENTER);
-
-
+                final int finalI = i;
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(CourseActivity.this,LessonActivity.class);
-                        intent.putExtra("Id",courseById.getLessons().getLessons()[finali].getId());
-                        startActivity(intent);
+                        intent.putExtra("Id",courseById.getLessons().getLessons()[finalI].getId());
+
                     }
                 });
+
                 ////Вишеееее
                 //
                 ////
                 ////
                 ////
                 ////
-                ////
-
-
+                ////`
                 linearLayout.addView(card);
 
             }
