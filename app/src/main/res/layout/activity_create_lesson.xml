@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/bg_one"
     tools:context=".activities.CreateLessonActivity">
 
@@ -19,7 +20,7 @@
         android:paddingRight="15dp"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,14 +37,14 @@
         android:hint="Description"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textEditTextCreateLesson"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="214dp"
         android:layout_marginTop="250dp"
         android:background="#FFFFFF"

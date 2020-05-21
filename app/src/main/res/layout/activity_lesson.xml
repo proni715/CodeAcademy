@@ -3,30 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/bg_design"
     tools:context=".activities.LessonActivity">
 
     <TextView
         android:id="@+id/lessonTitleTextView"
-        android:layout_width="410dp"
+        android:layout_width="360dp"
         android:layout_height="63dp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintVertical_bias="0.132" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="407dp"
-        android:layout_height="456dp"
+        android:layout_width="362dp"
+        android:layout_height="548dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,6 +39,6 @@
             android:id="@+id/lessonTextTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="18sp" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
